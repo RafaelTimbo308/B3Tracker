@@ -8,4 +8,5 @@ class Ticker(models.Model):
     tunnel_inf = models.DecimalField(decimal_places=2 , max_digits=6)
     tunnel_sup = models.DecimalField(decimal_places=2 , max_digits=6)
     value = models.DecimalField(decimal_places=2 , max_digits=6)
+    interval = models.IntegerField(default=5)
     last_update = models.DateTimeField()

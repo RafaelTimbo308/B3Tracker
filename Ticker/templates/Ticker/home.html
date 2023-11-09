@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Home {% endblock  %}
+{% block static_files %}
+    <link rel="stylesheet" href="{% static "Ticker/home.css" %}">
+{% endblock  %}
+
+{% block content %}
+
+<div class = "instructions">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptates obcaecati aspernatur delectus numquam minima beatae exercitationem nostrum maxime fugiat inventore qui adipisci quisquam, non modi earum, explicabo, a repudiandae.
+</div>
+
+<div class = "form-container">
+
+    <form action="{% url "upload" %}" method = "POST">
+        <input type="text" name="ticker" id=""placeholder = "Código da Ação">
+        <input type="number" name="tunnel-inf" id=""placeholder = "Túnel Superior">
+        <input type="number" name="tunnel-sup" id=""placeholder = "Túnel Inferior">
+        <input type="number" name="interval" id="" placeholder = "Intervalo de Monitoramento">
+        <button type="submit">Enviar</button>
+    </form>
+
+</div>
+
+<div class = "ticker-list-container">
+
+    <h1>Ações Monitoradas</h1>
+
+    <ul class = "ticker-list">
+        {% for ticker in tickers %}
+        <li class = "ticker-list-item">
+            {{ticker.ticker}} - R${{ticker.value}}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock  %}
