@@ -9,7 +9,12 @@
 {% block content %}
 
 <div class = "instructions">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptates obcaecati aspernatur delectus numquam minima beatae exercitationem nostrum maxime fugiat inventore qui adipisci quisquam, non modi earum, explicabo, a repudiandae.
+
+    <h1>Selecione as Ações que Deseja Monitorar</h1>
+
+    <h2>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, at quia excepturi reprehenderit amet nulla facilis voluptatum tempore architecto sapiente natus, nam delectus saepe quos temporibus! Ab perspiciatis odit recusandae?
+    </h2>
 </div>
 
 <div class = "form-container">
@@ -17,8 +22,8 @@
     <form action="" method = "POST">
         {% csrf_token %}
         <input type="text" name="ticker" id=""placeholder = "Código da Ação">
-        <input type="floatformat" name="tunnel-inf" id=""placeholder = "Túnel Superior">
-        <input type="floatformat" name="tunnel-sup" id=""placeholder = "Túnel Inferior">
+        <input type="floatformat" name="tunnel-inf" id=""placeholder = "Túnel Inferior">
+        <input type="floatformat" name="tunnel-sup" id=""placeholder = "Túnel Superior">
         <input type="number" name="interval" id="" placeholder = "Intervalo de Monitoramento">
         <button type="submit">Enviar</button>
     </form>
