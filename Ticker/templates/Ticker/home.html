@@ -14,10 +14,11 @@
 
 <div class = "form-container">
 
-    <form action="{% url "upload" %}" method = "POST">
+    <form action="" method = "POST">
+        {% csrf_token %}
         <input type="text" name="ticker" id=""placeholder = "Código da Ação">
-        <input type="number" name="tunnel-inf" id=""placeholder = "Túnel Superior">
-        <input type="number" name="tunnel-sup" id=""placeholder = "Túnel Inferior">
+        <input type="floatformat" name="tunnel-inf" id=""placeholder = "Túnel Superior">
+        <input type="floatformat" name="tunnel-sup" id=""placeholder = "Túnel Inferior">
         <input type="number" name="interval" id="" placeholder = "Intervalo de Monitoramento">
         <button type="submit">Enviar</button>
     </form>
