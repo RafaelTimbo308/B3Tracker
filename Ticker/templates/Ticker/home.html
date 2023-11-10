@@ -4,43 +4,115 @@
 {% block title %} Home {% endblock  %}
 {% block static_files %}
     <link rel="stylesheet" href="{% static "Ticker/home.css" %}">
+    <link rel="stylesheet" href="{% static "Ticker/form.css" %}">
+    <link rel="stylesheet" href="{% static "Ticker/ticker_list.css" %}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.money').mask('000.00', {reverse: true});
+        });
+    </script>
 {% endblock  %}
 
 {% block content %}
 
-<div class = "instructions">
+<div class = "item" id = "instructions">
 
-    <h1>Selecione as Ações que Deseja Monitorar</h1>
+    <header class = "div-header">
+        <h2>Monitore seus Ativos da B3</h2>
+    </header>
 
-    <h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, at quia excepturi reprehenderit amet nulla facilis voluptatum tempore architecto sapiente natus, nam delectus saepe quos temporibus! Ab perspiciatis odit recusandae?
-    </h2>
+    <p>
+        Insira o ativo que deseja monitorar, além dos valores indicados para venda (túnel inferior) e compra (túnel superior) e a periodicidade da checagem do valor do ativo.
+    </p>
+
+    <p>
+        Assim, estaremos acompanhando a evolução do valor dos seus ativos de interesse e notificando via e-mail caso ocorra uma situação de compra ou venda do ativo.
+    </p>
 </div>
 
-<div class = "form-container">
-    <p class = "error-msg">{{error}}</p>
+<div class = "item" id =  "form-container">
+    <header class = "div-header">
+        <h2>Adicione ativos ou Edite parâmetros</h2>
+    </header>
+
     <form action="" method = "POST">
         {% csrf_token %}
-        <input type="text" name="ticker" id=""placeholder = "Código da Ação">
-        <input type="floatformat" name="tunnel-inf" id=""placeholder = "Túnel Inferior">
-        <input type="floatformat" name="tunnel-sup" id=""placeholder = "Túnel Superior">
-        <input type="number" name="interval" id="" placeholder = "Intervalo de Monitoramento">
-        <button type="submit">Enviar</button>
+        <div class = "form-control">
+            <label for="ticker">Código da ação</label>
+            <input type="text" maxlength="5" name="ticker" placeholder = "Código da Ação" required>
+        </div>
+
+        <div class = "form-control">
+            <label for="tunnel-inf">Túnel inferior</label>
+            <input type="text" step="0.01" min="0" name="tunnel-inf" placeholder = "R$ 0,00" class="money" required>    
+        </div>
+
+        <div class="form-control">
+            <label for="interval">Intervalo de monitoramento</label>
+            <input type="number" name="interval" min="1" max="999" placeholder = "1 min" required>    
+        </div>
+
+        <div class = "form-control">
+            <label for="tunnel-sup">Túnel superior</label>
+            <input type="text" name="tunnel-sup" placeholder = "R$ 0,00" class="money" required>    
+        </div>
+        
+        <div class="button-control">
+            <button type="submit">Confirmar</button>
+        </div>
     </form>
 
 </div>
 
-<div class = "ticker-list-container">
+<div class = "item" id = "ticker-list-container">
 
-    <h1>Ações Monitoradas</h1>
+    <header class = "div-header">
+        <h2>Ações Monitoradas</h2>
+    </header>
 
-    <ul class = "ticker-list">
-        {% for ticker in tickers %}
-        <li class = "ticker-list-item">
-            {{ticker.ticker}} - R${{ticker.value}}
-        </li>
-        {% endfor %}
-    </ul>
+    <div class = "ticker">
+        <div class = "ticker-info" id="ticker-info-title">
+            Ticker
+        </div>
+
+        <div class = "ticker-info" id="ticker-info-value">
+            Preço
+        </div>
+    </div>
+
+    {% for ticker in tickers %}
+    
+    <div class = "ticker">
+        <div class = "ticker-info">
+            {{ticker.ticker}}
+        </div>
+
+        <div class = "ticker-info">
+            {{ticker.value}}
+        </div>
+    </div>
+    
+    {% endfor %}
+
+    <div class = "ticker-button">
+        <a href="">
+            <button>Ver Detalhes</button>
+        </a>
+    </div>
 </div>
+
+{% endblock  %}
+
+{% block error_msg %}
+
+    {% if error %}
+    <div class = "error-msg">
+        <h2>
+            {{error}}
+        </h2>
+    </div>
+    {% endif %}
 
 {% endblock  %}

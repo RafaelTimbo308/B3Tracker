@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from .models import Ticker
 import threading
 import yfinance as yf
+from time import sleep
 
 def send_mail_sell(ticker ,  value):
     
@@ -60,10 +61,9 @@ def send_mail_upload(code):
 
 def monitoring(code):
     
-    ticker = Ticker.objects.get(ticker = code+".SA")
-    
     while True:
-        
+        sleep(60)
+        ticker = Ticker.objects.get(ticker=code)
         last_update = ticker.last_update
         clock = timezone.now()
         delta = clock - last_update

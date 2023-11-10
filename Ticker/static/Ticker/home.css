@@ -1,0 +1,64 @@
+.container{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top:50px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.div-header{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;   
+    background-color: #0A1045;
+}
+
+.div-header h2{
+    color:#50FFB1
+}
+
+
+#instructions{
+    border-radius: 10px;
+    width: 25%;
+}
+
+#instructions p{
+    padding:0px 10px;
+}
+
+#form-container{
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 35%;
+    background-color: #817F75;
+}
+
+#ticker-list-container{
+    
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 25%;
+}
+
+.item{
+    display: flex;
+    flex-flow: column;
+    background-color: #BBD6F2;
+    font-family:'Poppins', sans-serif; 
+}
+
+.error-msg{
+    margin:10px 40%;
+    width:20%;
+    border-radius: 10px;
+    border:1px solid black;
+    background-color: #0A1045;
+    color:#AA4586;
+    justify-content: center;
+    text-align: center;
+}
