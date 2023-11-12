@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} Home {% endblock  %}
+{% block title %} B3Tracker - Monitore Ativos {% endblock  %}
 {% block static_files %}
     <link rel="stylesheet" href="{% static "Ticker/home.css" %}">
     <link rel="stylesheet" href="{% static "Ticker/form.css" %}">
@@ -24,7 +24,7 @@
     </header>
 
     <p>
-        Insira o ativo que deseja monitorar, além dos valores indicados para venda (túnel inferior) e compra (túnel superior) e a periodicidade da checagem do valor do ativo.
+        Insira o ativo que deseja monitorar, além dos valores indicados para compra (túnel inferior) e venda (túnel superior) e a periodicidade da checagem do valor do ativo.
     </p>
 
     <p>
@@ -97,7 +97,7 @@
     {% endfor %}
 
     <div class = "ticker-button">
-        <a href="">
+        <a href="{% url "details" %}">
             <button>Ver Detalhes</button>
         </a>
     </div>

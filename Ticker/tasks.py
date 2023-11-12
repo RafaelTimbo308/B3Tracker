@@ -5,14 +5,14 @@ import threading
 import yfinance as yf
 from time import sleep
 
-def send_mail_sell(ticker ,  value):
+def send_mail_sell(code ,  value):
     
     send_mail(
-        "Sugestão de Venda de Ativo",
+        f"Sugestão de Venda - {code}",
         f'''
             Prezado usuário,
         
-            O preço da ação {ticker} atingiu R${value}, ultrapassando o valor estipulado para venda.
+            O preço da ação {code} atingiu R${value}, ultrapassando o valor estipulado para venda.
 
             Atenciosamente,
             Equipe B3Tracker
@@ -23,14 +23,14 @@ def send_mail_sell(ticker ,  value):
 
     )
 
-def send_mail_buy(ticker ,  value):
+def send_mail_buy(code ,  value):
     
     send_mail(
-        "Sugestão de Compra de Ativo",
+        f"Sugestão de Compra - {code}",
         f'''
             Prezado usuário,
         
-            O preço da ação {ticker} atingiu R${value}, ficando abaixo do valor estipulado para compra.
+            O preço da ação {code} atingiu R${value}, ficando abaixo do valor estipulado para compra.
 
             Atenciosamente,
             Equipe B3Tracker
@@ -59,6 +59,7 @@ def send_mail_upload(code):
 
     )
 
+
 def monitoring(code):
     
     while True:
@@ -81,6 +82,11 @@ def monitoring(code):
                 send_mail_buy(code , round(value,2))
 
 def create_monitoring_thread(code):
-    send_mail_upload(code)
-    monitoring_thread = threading.Thread(target=monitoring , args=(code,))
-    monitoring_thread.start()
+    # Verifica se já existe uma thread em execução para o mesmo ticker
+    existing_threads = [thread for thread in threading.enumerate() if thread.name == f"monitoring_thread_{code}"]
+
+    if not existing_threads:
+        # Se não houver thread existente, cria uma nova
+        send_mail_upload(code)
+        monitoring_thread = threading.Thread(target=monitoring, args=(code,), name=f"monitoring_thread_{code}")
+        monitoring_thread.start()

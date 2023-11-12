@@ -45,3 +45,7 @@ def Home(request):
     return render(request , "Ticker/home.html", {
         "tickers":tickers
     })
+    
+def Detail(request):
+    
+    return render(request , "Ticker/details.html")
