@@ -43,3 +43,11 @@ body {
 #link h2:hover {
     color: #AA4586;
 }
+
+#icon {
+    width: 100px;
+    height: 100px;
+    position: absolute; /* Posicionamento absoluto */
+    bottom: 10px; /* Distância de 10px da extremidade inferior */
+    right: 10px; /* Distância de 10px da extremidade direita */
+}

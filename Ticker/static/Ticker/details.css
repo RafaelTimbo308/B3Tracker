@@ -2,9 +2,10 @@
 
 
 #table-container{
-    
     margin-top: 50px;
-    width: 100%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 94%;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -49,4 +50,8 @@
 
 table{
     background-color: #BBD6F2;
+}
+
+p{
+    margin-left: 3%;
 }
