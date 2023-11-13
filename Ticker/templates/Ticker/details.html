@@ -4,9 +4,40 @@
 {% block title %}B3Tracker - Detalhes{% endblock  %}
 
 {% block static_files %}
-
+    <link rel="stylesheet" href="{% static "Ticker/details.css" %}">
 {% endblock  %}
 
-{% block content %}
+{% block href %}{% url "home" %}{% endblock  %}
+{% block link_name %}Página Inicial{% endblock  %}
 
+{% block content %}
+    
+<div id="table-container">
+    <div id="table-title">
+        <h2>LISTA DETALHADA DE ATIVOS</h2>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Ação</th>
+                <th>Preço (R$)</th>
+                <th>Túnel Inferior (R$)</th>
+                <th>Túnel Superior (R$)</th>
+                <th>Último Update*</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticker in tickers %}
+            <tr>
+                <td>{{ticker.ticker}}</td>
+                <td>{{ticker.value}}</td>
+                <td>{{ticker.tunnel_inf}}</td>
+                <td>{{ticker.tunnel_sup}}</td>
+                <td>{{ticker.last_update}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p>* Último update com base no horário de Brasília.</p>
 {% endblock  %}

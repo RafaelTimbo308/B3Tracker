@@ -1,21 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto+Condensed:wght@400;700&display=swap');
 
-body{
+body {
     background-color: #817F75;
+    margin: 0px;
 }
 
-#principal{
-    border: 2px solid black;
+#principal {
     height: 100px;
-    margin:-10px;
+    padding: 10px; /* Ajuste do padding para incluir 10px no topo e na parte inferior */
     background-color: #0A1045;
-    padding-left: 20px;
-    padding-bottom: 10px;
+    position: relative;
 }
 
-#title{
+#title {
     color: #50FFB1;
     font-size: 3em;
     font-weight: bold;
-    font-family:'Poppins', sans-serif; 
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    position: absolute; /* Posicionamento absoluto */
+    bottom: 10px; /* Distância de 10px da extremidade inferior */
+    left: 10px; /* Distância de 10px da extremidade esquerda */
+}
+
+#link {
+    color: #50FFB1;
+    width: 20%;
+    position: absolute; /* Posicionamento absoluto */
+    left: 50%; /* Centralizado à metade do header */
+    transform: translateX(-50%); /* Ajuste para centralizar corretamente */
+    text-decoration: none;
+    text-align: center;
+    bottom: 10px; /* Distância de 10px da extremidade inferior */
+}
+
+#link h2 {
+    color: #50FFB1;
+    font-size: 2em;
+    margin: 0;
+}
+
+#link h2:hover {
+    color: #AA4586;
 }

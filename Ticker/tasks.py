@@ -41,25 +41,6 @@ def send_mail_buy(code ,  value):
 
     )
 
-def send_mail_upload(code):
-    
-    send_mail(
-        f"Ativo {code} Adicionado ao Monitoramento!",
-        f'''
-            Prezado usuário,
-
-            {code} foi inserido com sucesso aos ativos a serem monitorados!
-            
-            Atenciosamente,
-            Equipe B3Tracker
-        ''',
-        "ticker.monitor2023@gmail.com",
-        ["rafaelctimbo@gmail.com"],
-        fail_silently=False,
-
-    )
-
-
 def monitoring(code):
     
     while True:
@@ -87,6 +68,5 @@ def create_monitoring_thread(code):
 
     if not existing_threads:
         # Se não houver thread existente, cria uma nova
-        send_mail_upload(code)
         monitoring_thread = threading.Thread(target=monitoring, args=(code,), name=f"monitoring_thread_{code}")
         monitoring_thread.start()

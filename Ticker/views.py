@@ -48,4 +48,18 @@ def Home(request):
     
 def Detail(request):
     
-    return render(request , "Ticker/details.html")
+    tickers = Ticker.objects.all()
+    
+    return render(request , "Ticker/details.html",{
+        "tickers":tickers
+    })
+
+def Delete(request,code):
+    
+    Ticker.objects.get(ticker=code).delete()
+    
+    tickers = Ticker.objects.all()
+    
+    return render(request , "Ticker/home.html",{
+        "tickers":tickers
+    })
