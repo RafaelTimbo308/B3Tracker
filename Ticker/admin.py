@@ -4,6 +4,6 @@ from .models import Ticker
 
 class TickerAdmin(admin.ModelAdmin):
     
-    list_display = ('ticker','value','tunnel_inf','tunnel_sup', 'interval', 'last_update')
+    list_display = ('user','ticker','value','tunnel_inf','tunnel_sup', 'interval', 'last_update')
     
 admin.site.register(Ticker,TickerAdmin)
