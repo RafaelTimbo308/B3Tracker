@@ -5,47 +5,65 @@ import threading
 import yfinance as yf
 from time import sleep
 
-def send_mail_sell(code ,  value):
+def send_mail_sell(user , code ,  value):
     
     send_mail(
         f"Sugestão de Venda - {code}",
         f'''
-            Prezado usuário,
+            Prezado(a) {user.first_name} {user.last_name},
         
             O preço da ação {code} atingiu R${value}, ultrapassando o valor estipulado para venda.
 
             Atenciosamente,
             Equipe B3Tracker
         ''',
-        "ticker.monitor2023@gmail.com",
-        ["rafaelctimbo@gmail.com"],
+        "b3tracker@gmail.com",
+        [f"{user.email}"],
         fail_silently=False,
 
     )
 
-def send_mail_buy(code ,  value):
+def send_mail_buy(user, code ,  value):
     
     send_mail(
         f"Sugestão de Compra - {code}",
         f'''
-            Prezado usuário,
+            Prezado(a) {user.first_name} {user.last_name},
         
             O preço da ação {code} atingiu R${value}, ficando abaixo do valor estipulado para compra.
 
             Atenciosamente,
             Equipe B3Tracker
         ''',
-        "ticker.monitor2023@gmail.com",
-        ["rafaelctimbo@gmail.com"],
+        "b3tracker@gmail.com",
+        [f"{user.email}"],
         fail_silently=False,
 
     )
 
-def monitoring(code):
+def send_mail_upload(user, code):
+    
+    send_mail(
+        f"{code}Adicionada ao BD",
+        f'''
+            Prezado(a) {user.first_name} {user.last_name},
+        
+            A ação {code} foi adicionada ao monitoramento.
+            
+            Atenciosamente,
+            Equipe B3Tracker
+        ''',
+        "b3tracker@gmail.com",
+        [f"{user.email}"],
+        fail_silently=False,
+
+    )
+
+def monitoring(user , code):
     
     while True:
         sleep(60)
-        ticker = Ticker.objects.get(ticker=code)
+        ticker = Ticker.objects.get(user = user, ticker=code)
         last_update = ticker.last_update
         clock = timezone.now()
         delta = clock - last_update
@@ -58,15 +76,16 @@ def monitoring(code):
             ticker.save()
             
             if value > ticker.tunnel_sup:
-                send_mail_sell(code , round(value,2))
+                send_mail_sell(user, code , round(value,2))
             if value < ticker.tunnel_inf:
-                send_mail_buy(code , round(value,2))
+                send_mail_buy(user, code , round(value,2))
 
-def create_monitoring_thread(code):
+def create_monitoring_thread(user, code):
     # Verifica se já existe uma thread em execução para o mesmo ticker
-    existing_threads = [thread for thread in threading.enumerate() if thread.name == f"monitoring_thread_{code}"]
+    existing_threads = [thread for thread in threading.enumerate() if thread.name == f"monitoring_thread_{code}_{user.username}"]
 
     if not existing_threads:
         # Se não houver thread existente, cria uma nova
-        monitoring_thread = threading.Thread(target=monitoring, args=(code,), name=f"monitoring_thread_{code}")
+        
+        monitoring_thread = threading.Thread(target=monitoring, args=(user,code), name=f"monitoring_thread_{code}_{user.username}")
         monitoring_thread.start()

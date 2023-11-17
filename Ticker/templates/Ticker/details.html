@@ -10,6 +10,15 @@
 {% block href %}{% url "home" %}{% endblock  %}
 {% block link_name %}Página Inicial{% endblock  %}
 
+{% block logout_link %}
+
+<div id="user-greeting">
+    <p>Olá, {{name}}</p>
+    <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+</div>
+
+{% endblock  %}
+
 {% block content %}
     
 <div id="table-container">

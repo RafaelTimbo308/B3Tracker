@@ -7,7 +7,7 @@ body {
 
 #principal {
     height: 100px;
-    padding: 10px; /* Ajuste do padding para incluir 10px no topo e na parte inferior */
+    padding: 10px; 
     background-color: #0A1045;
     position: relative;
 }
@@ -18,20 +18,20 @@ body {
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    position: absolute; /* Posicionamento absoluto */
-    bottom: 10px; /* Distância de 10px da extremidade inferior */
-    left: 10px; /* Distância de 10px da extremidade esquerda */
+    position: absolute; 
+    bottom: 10px;
+    left: 10px; 
 }
 
 #link {
     color: #50FFB1;
     width: 20%;
-    position: absolute; /* Posicionamento absoluto */
-    left: 50%; /* Centralizado à metade do header */
-    transform: translateX(-50%); /* Ajuste para centralizar corretamente */
+    position: absolute; 
+    left: 50%; 
+    transform: translateX(-50%); 
     text-decoration: none;
     text-align: center;
-    bottom: 10px; /* Distância de 10px da extremidade inferior */
+    bottom: 10px; 
 }
 
 #link h2 {
@@ -47,7 +47,34 @@ body {
 #icon {
     width: 100px;
     height: 100px;
-    position: absolute; /* Posicionamento absoluto */
-    bottom: 10px; /* Distância de 10px da extremidade inferior */
-    right: 10px; /* Distância de 10px da extremidade direita */
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
+}
+
+#user-greeting {
+
+    position: absolute;
+    width:100px;
+    bottom: 10px; 
+    right: 180px; 
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-greeting p {
+    margin-bottom: 10px;
+    color: #50FFB1;
+    font-size: 1.2em;
+}
+
+#logout-link {
+    color: #50FFB1;
+    text-decoration: none;
+}
+
+#logout-link:hover {
+    color: #AA4586;
 }

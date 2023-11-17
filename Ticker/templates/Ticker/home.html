@@ -18,6 +18,14 @@
 {% block href %}{% url "details" %}{% endblock  %}
 {% block link_name %}Detalhes{% endblock  %}
 
+{% block logout_link %}
+
+<div id="user-greeting">
+    <p>Olá, {{name}}</p>
+    <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+</div>
+
+{% endblock  %}
 
 {% block content %}
 

@@ -9,11 +9,11 @@ from django.dispatch import receiver
 def on_connection_created(sender, **kwargs):
     from Ticker.tasks import create_monitoring_thread
     from Ticker.models import Ticker
-    # Esta função será chamada assim que a conexão com o banco de dados for criada
+
     tickers = Ticker.objects.all()
     for ticker in tickers:
-        create_monitoring_thread(ticker.ticker) 
-    
+        create_monitoring_thread(user=ticker.user , code = ticker.ticker)
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'B3Tracker.settings')

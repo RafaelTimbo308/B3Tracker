@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4ax@6+h)3aklkfk3l7esqms5+8$iyi!=p#c4#5kd8qv^f6vlaj'
+SECRET_KEY = 'django-insecure-0wbt)0war#ftfu88-u=n28h8d5zb26r92v3i@w13*xj=ms^2xf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'Ticker',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Ticker'
 ]
 
 MIDDLEWARE = [
@@ -55,9 +55,7 @@ ROOT_URLCONF = 'B3Tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-                BASE_DIR / 'templates'
-            ],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,11 +127,11 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-#Configurações para envio de e-mail
+from decouple import config
 
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT =587
-EMAIL_HOST_USER= 'ticker.monitor2023@gmail.com'
-EMAIL_HOST_PASSWORD= 'ffvuqkukrpiaobhz'
-EMAIL_USE_TLS=True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
