@@ -31,7 +31,7 @@ def Home(request):
             value = yf.Ticker(code+".SA").history(period="1d")['Close'].iloc[-1]
         except:
             tickers = Ticker.objects.filter(user = request.user)
-            error_msg = f"Ação {code} não encontrada."
+            error_msg = f"Ativo {code} não encontrada."
             return render(request , "Ticker/home.html",{
                 "tickers":tickers,
                 "error":error_msg,
